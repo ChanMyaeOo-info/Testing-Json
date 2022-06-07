@@ -1,63 +1,15 @@
-<?php
-require_once 'simple_html_dom.php';
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
 
-$html = file_get_html("https://news.sanook.com/lotto/?fbclid=IwAR0wq12u1sk0MW6l79Gaboyx1bYmhAd96rgPo1XmDproUwXUD0Eq8wmv2ng");
+<h1>Hello Git hub</h1>
 
-$i = 0;
-$articles = [];
-$dates = [];
-$numbers = [];
-$real_numbers = [];
-
-//Get Numbers
-foreach ($html->find('p.lotto-check__para--half .lotto__number--three') as $e) {
-
-    array_push($numbers, $e->innertext);
-
-
-}
-
-foreach ($numbers as $key => $num) {
-    if ($key % 2 === 0) {
-
-        array_push($real_numbers, substr($num, 3));
-    }
-}
-
-//Get Dates
-foreach ($html->find('.lotto-check__time') as $e) {
-
-    array_push($dates, explode(" ", $e->datetime)[0]);
-
-}
-
-$results = [];
-foreach ($dates as $key => $d) {
-
-    $result = [];
-    $result["date"] = $dates[$key];
-    $result["3d"] = $real_numbers[$key];
-
-    array_push($results, json_encode($result));
-
-}
-
-echo json_encode($results);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</body>
+</html>
